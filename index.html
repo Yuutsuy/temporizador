@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./main.css">
+        <title>Temporizador</title>
+    </head>
+    <body>
+
+    <div id="container">
+        <div>
+            <h1>Cronometro</h1>
+            <div id="contador">
+                00:00
+            </div>
+        </div>
+        <div id="botoes">
+            <button id="inicio">Começar</button>
+            <button id="zero">Zerar</button>
+        </div>
+    </div>
+
+    <script>
+        // declarando variaveis e declarando variaveis
+        var elBotao = document.getElementById('inicio');
+        var elCont = document.getElementById('contador');
+        var elBotaoZerar = document.getElementById('zero');
+
+        
+
+        // utilizando elBotao com uma função para alterar o elemento html
+        elBotao.onclick = function() {
+            elCont.innerHTML = ('olá');
+        }
+
+        elBotaoZerar.onclick = function() {
+            elCont.innerHTML = ('00:00');
+        }
+    </script>
+    </body>
+</html>
