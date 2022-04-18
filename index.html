@@ -6,36 +6,46 @@
         <link rel="stylesheet" href="./main.css">
         <title>Temporizador</title>
     </head>
+
+    <style>
+        .btnStyle {
+            background-color:black;   
+        }
+    </style>
+
     <body>
 
     <div id="container">
         <div>
             <h1>Cronometro</h1>
             <div id="contador">
-                00:00
             </div>
         </div>
         <div id="botoes">
-            <button id="inicio">Começar</button>
-            <button id="zero">Zerar</button>
+            <button id="iniciar">Começar</button>
+            <button id="zerar">Zerar</button>
         </div>
     </div>
 
     <script>
         // declarando variaveis e declarando variaveis
-        var elBotao = document.getElementById('inicio');
+        var elBotao = document.getElementById('iniciar');
+        var elBotaoZerar = document.getElementById('zerar');
         var elCont = document.getElementById('contador');
-        var elBotaoZerar = document.getElementById('zero');
+        var mm = 0;
+        var ss = 0;
+        var timer = 1000;
 
-        
-
-        // utilizando elBotao com uma função para alterar o elemento html
+        // criando função para alterar o elemento html do cronometro assim como um contador
         elBotao.onclick = function() {
-            elCont.innerHTML = ('olá');
+            elCont = setInterval(function() {
+                elCont = document.createElement(mm + ':' + ss)
+            }, timer)
         }
 
+        // criando função para zerar o cronometro
         elBotaoZerar.onclick = function() {
-            elCont.innerHTML = ('00:00');
+            elCont = (mm + ':' + ss);
         }
     </script>
     </body>
