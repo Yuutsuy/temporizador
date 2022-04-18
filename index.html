@@ -33,14 +33,16 @@
         var elBotaoParar = document.getElementById('stop');
         var elCont = document.getElementById('contador');
         var min = 0; // variavel de minutos começa em 0
-        var seg = 0; // variavel de segundos começa em 0
+        var seg = 1; // variavel de segundos começa em 0
         var timer = 1000; // timer definido com um valor padrão para facilitar na chamada do mesmo
         var cronometro = 0.00; // cronometro começa em 0.00 
         var cronStatus = false; // status do cronometro
 
-        /* Nota:
-        Comentei o css dos botões, pois, o método classList não estava alterando o css dos botões de forma correta,
-        mesmo após algumas tentativas, ainda não estava da forma correta */
+        /* 
+        Nota:
+        Comentei o css dos botões (na pasta CSS), pois, o método classList não estava alterando o css dos botões de forma correta,
+        mesmo após algumas tentativas, ainda não estava da forma correta 
+        */
 
         // criando função iniciar que o botão escrito Começar vai receber as instruções
         var iniciar = function() {
@@ -50,12 +52,32 @@
 
                 elBotao.innerText = 'Começar';
 
+                elCont = clearInterval();
+
                 cronStatus = false;
             }else{
                 elBotao.classList.add("btnStyle");
-                
-                elBotao.innerText = 'Parar';
 
+                elBotao.innerText = 'Parar';
+                
+                setInterval(function(){
+                    
+                    if(seg === 60) {
+                        seg = 0;
+                        elCont = (`0${min++}:0${seg}`);
+                        if(seg <= 9) {
+                            elCont.innerHTML = (`0${min}:0${seg++}`);
+                        }else{
+                            elCont.innerHTML = (`0${min}:${seg++}`);
+                        }
+                    }else{
+                        if(seg <= 9) {
+                            elCont.innerHTML = (`0${min}:0${seg++}`);
+                        }else{
+                            elCont.innerHTML = (`0${min}:${seg++}`);
+                        }
+                    }
+                }, 1000);
                 cronStatus = true;
             }
         }
