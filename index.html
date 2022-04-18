@@ -9,43 +9,53 @@
 
     <style>
         .btnStyle {
-            background-color:black;   
+            background-color:#800000;
+            color:white;
         }
     </style>
-
+    
     <body>
 
     <div id="container">
         <div>
             <h1>Cronometro</h1>
-            <div id="contador">
-            </div>
+            <div id="contador">00:00</div>
         </div>
         <div id="botoes">
-            <button id="iniciar">Começar</button>
-            <button id="zerar">Zerar</button>
+            <button onclick="iniciar()" id="start">Começar</button>
+            <button onclick="zerar()" id="stop">Zerar</button>
         </div>
     </div>
 
     <script>
         // declarando variaveis e declarando variaveis
-        var elBotao = document.getElementById('iniciar');
-        var elBotaoZerar = document.getElementById('zerar');
+        var elBotao = document.getElementById('start');
+        var elBotaoParar = document.getElementById('stop');
         var elCont = document.getElementById('contador');
-        var mm = 0;
-        var ss = 0;
-        var timer = 1000;
+        var min = 0; // variavel de minutos começa em 0
+        var seg = 0; // variavel de segundos começa em 0
+        var timer = 1000; // timer definido com um valor padrão para facilitar na chamada do mesmo
+        var cronometro = 0.00; // cronometro começa em 0.00 
+        var cronStatus = false; // status do cronometro
 
-        // criando função para alterar o elemento html do cronometro assim como um contador
-        elBotao.onclick = function() {
-            elCont = setInterval(function() {
-                elCont = document.createTextNode(`${mm} : ${ss}`)
-            }, timer)
+        // Nota:
+        // Comentei o css dos botões, pois, o método classList não estava alterando o css
+
+        // criando função iniciar que o botão escrito Começar vai receber as instruções
+        var iniciar = function() {
+            // criada condição para analizar o status do cronometro
+            if(cronStatus === true) {
+                elBotao.classList.remove('btnStyle');
+                cronStatus = false;
+            }else{
+                elBotao.classList.add("btnStyle");
+                cronStatus = true;
+            }
         }
 
         // criando função para zerar o cronometro
-        elBotaoZerar.onclick = function() {
-            elCont = (mm + ':' + ss);
+        var zerar = function() {
+            
         }
     </script>
     </body>
