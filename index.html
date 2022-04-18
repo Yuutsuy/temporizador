@@ -39,7 +39,7 @@
         // criando função para alterar o elemento html do cronometro assim como um contador
         elBotao.onclick = function() {
             elCont = setInterval(function() {
-                elCont = document.createElement(mm + ':' + ss)
+                elCont = document.createTextNode(`${mm} : ${ss}`)
             }, timer)
         }
 
