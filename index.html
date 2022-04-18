@@ -7,13 +7,6 @@
         <title>Temporizador</title>
     </head>
 
-    <style>
-        .btnStyle {
-            background-color:#800000;
-            color:white;
-        }
-    </style>
-    
     <body>
 
     <div id="container">
@@ -38,23 +31,36 @@
         var cronometro = 0.00; // cronometro começa em 0.00 
         var cronStatus = false; // status do cronometro
 
-        /* 
-        Nota:
-        Comentei o css dos botões (na pasta CSS), pois, o método classList não estava alterando o css dos botões de forma correta,
-        mesmo após algumas tentativas, ainda não estava da forma correta 
-        */
-
         // criando função iniciar que o botão escrito Começar vai receber as instruções
         var iniciar = function() {
-            // criada condição para analizar o status do cronometro
-            if(cronStatus === true) {
+            // criada condição para analizar o status do cronometro (essa condição indica que o contador está parado)
+            if(cronStatus) {
                 elBotao.classList.remove('btnStyle');
 
                 elBotao.innerText = 'Começar';
 
-                elCont = clearInterval();
+                if(elCont !== 0) {
+                    elCont = clearInterval();
+
+                    setInterval(function(){
+                    
+                    if(seg === 60) {
+                        min++;
+                        seg = 0;
+                    }else{
+                        if(seg <= 9) {
+                            elCont.innerText = (`0${min}:0${seg++}`);
+                        }else{
+                            elCont.innerText = (`${min}:${seg++}`);
+                        }
+                    }
+                }, 1000);
+                }else{
+                    
+                }
 
                 cronStatus = false;
+            // (essa condição indica que o contador está correndo)
             }else{
                 elBotao.classList.add("btnStyle");
 
@@ -63,21 +69,16 @@
                 setInterval(function(){
                     
                     if(seg === 60) {
+                        min++;
                         seg = 0;
-                        elCont = (`0${min++}:0${seg}`);
-                        if(seg <= 9) {
-                            elCont.innerHTML = (`0${min}:0${seg++}`);
-                        }else{
-                            elCont.innerHTML = (`0${min}:${seg++}`);
-                        }
                     }else{
                         if(seg <= 9) {
-                            elCont.innerHTML = (`0${min}:0${seg++}`);
+                            elCont.innerText = (`0${min}:0${seg++}`);
                         }else{
-                            elCont.innerHTML = (`0${min}:${seg++}`);
+                            elCont.innerText = (`0${min}:${seg++}`);
                         }
                     }
-                }, 1000);
+                }, 10);
                 cronStatus = true;
             }
         }
