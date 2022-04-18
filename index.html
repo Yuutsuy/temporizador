@@ -38,17 +38,24 @@
         var cronometro = 0.00; // cronometro começa em 0.00 
         var cronStatus = false; // status do cronometro
 
-        // Nota:
-        // Comentei o css dos botões, pois, o método classList não estava alterando o css
+        /* Nota:
+        Comentei o css dos botões, pois, o método classList não estava alterando o css dos botões de forma correta,
+        mesmo após algumas tentativas, ainda não estava da forma correta */
 
         // criando função iniciar que o botão escrito Começar vai receber as instruções
         var iniciar = function() {
             // criada condição para analizar o status do cronometro
             if(cronStatus === true) {
                 elBotao.classList.remove('btnStyle');
+
+                elBotao.innerText = 'Começar';
+
                 cronStatus = false;
             }else{
                 elBotao.classList.add("btnStyle");
+                
+                elBotao.innerText = 'Parar';
+
                 cronStatus = true;
             }
         }
